@@ -1,0 +1,21 @@
+/* Header.css */
+.nav {
+  display: flex;               
+  justify-content: center;     
+  align-items: center;         
+  gap: 40px;                   
+  padding: 10px 0;
+  background-color: black;     
+}
+
+.nav-link {
+  color: white;                
+  text-decoration: none;       
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #f87171;             
+}
