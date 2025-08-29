@@ -1,8 +1,9 @@
-.nav-link {
-  color: white;
-  font-weight: 500;
-  transition: 0.3s;
-}
-.nav-link:hover {
-  color: #ff4d4d;
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
 }
