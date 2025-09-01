@@ -9,7 +9,7 @@ export default function Home() {
     <div className="home-container">
       <Header />  {/* render the header */}
 
-      <h1 className="title">Welcome to Movie Search</h1>
+      <h1 className="title">QuickShow</h1>
 
      <img src={sscImage} alt="Movie Poster" className="movie-poster" />
 
