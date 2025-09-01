@@ -1,92 +1,55 @@
-import React from 'react';
+import React from "react";
+import "./Movies.css";
 
-import goatImg from '../../assets/goat.jpg';
-import coolieImg from '../../assets/coolie.jpg';
-import dragonImg from '../../assets/dragon.jpg';
-import elevenImg from '../../assets/eleven.jpg';
-import maharajaImg from '../../assets/maharaja.jpg';
-
-// Sample movie data
 const movies = [
-  { id: 1, title: "GOAT", image: goatImg },
-  { id: 2, title: "Coolie", image: coolieImg },
-  { id: 3, title: "Dragon", image: dragonImg },
-  { id: 4, title: "Eleven", image: elevenImg },
-  { id: 5, title: "MahaRaja", image: maharajaImg },
-  { id: 6, title: "MahaRaja", image: maharajaImg },
-  { id: 7, title: "MahaRaja", image: maharajaImg }
-  // Add more movies as needed
+  {
+    id: 1,
+    title: "The Accountant 2",
+    genre: "Crime | Thriller",
+    year: 2025,
+    duration: "2h 13m",
+    rating: 7.1,
+    image: "https://image.tmdb.org/t/p/w500/9ZlYV1bZkYkRrM4j3tYtG0q8XnG.jpg"
+  },
+  {
+    id: 2,
+    title: "A Minecraft Movie",
+    genre: "Family | Comedy",
+    year: 2025,
+    duration: "1h 44m",
+    rating: 6.5,
+    image: "https://image.tmdb.org/t/p/w500/your-movie-image.jpg"
+  },
+  {
+    id: 3,
+    title: "How to Train Your Dragon",
+    genre: "Action | Family",
+    year: 2025,
+    duration: "2h 5m",
+    rating: 7.6,
+    image: "https://image.tmdb.org/t/p/w500/another-movie.jpg"
+  }
 ];
 
-function handleView(movie) {
-  // Placeholder: Replace with navigation logic (e.g., React Router)
-  alert(`Go to booking page for ${movie.title}`);
-}
-
-function Movies() {
+export default function Movies() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "flex-start",
-        maxWidth: "1280px",
-        margin: "0 auto",
-        marginLeft: "-40px"
-      }}
-    >
-      <h1 style={{
-        fontSize: "1.2rem",
-        textAlign: "center",
-        color: "blue",
-        width: "100%"
-      }}>Select Movies</h1>
-      {movies.map(movie => (
-        <div
-          key={movie.id}
-          style={{
-            margin: "10px",
-            border: "1px solid #ccc",
-            padding: "8px",
-            borderRadius: "8px",
-            width: "300px",
-            height: "400px",
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-start"
-          }}
-        >
-          <img
-            src={movie.image}
-            alt={movie.title}
-            style={{
-              width: "100%",
-              height: "260px",
-              objectFit: "cover",
-              borderRadius: "6px"
-            }}
-          />
-          <h3 style={{ fontSize: "1.1rem", margin: "16px 0 8px" }}>{movie.title}</h3>
-          <button
-            style={{
-              padding: "8px 16px",
-              background: "#1976d2",
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-              marginTop: "auto"
-            }}
-            onClick={() => handleView(movie)}
-          >
-            View
-          </button>
-        </div>
-      ))}
+    <div className="movies-container">
+      <h2 className="section-title">Now Showing</h2>
+      <div className="movies-grid">
+        {movies.map((movie) => (
+          <div key={movie.id} className="movie-card">
+            <img src={movie.image} alt={movie.title} className="movie-poster" />
+            <h3>{movie.title}</h3>
+            <p>
+              {movie.year} • {movie.genre} • {movie.duration}
+            </p>
+            <div className="card-footer">
+              <button className="btn">Buy Tickets</button>
+              <span className="rating">⭐ {movie.rating}</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default Movies

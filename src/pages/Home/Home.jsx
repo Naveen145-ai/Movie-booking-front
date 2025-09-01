@@ -1,19 +1,26 @@
 import React from "react";
-
 import "./Home.css";
-import Header from "../../components/Header/Header"; // <-- corrected path
-import sscImage from "../../assets/ssc.jpg"; // adjust path relative to your file
 
 export default function Home() {
   return (
-    <div className="home-container">
-      <Header />  {/* render the header */}
+    <div className="home">
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="nav-links">
+          <a href="#movies" className="nav-item">Movies</a>
+          <a href="#screens" className="nav-item">Screens</a>
+          <a href="#seats" className="nav-item">Seats</a>
+        </div>
+        <div className="login-btn">
+          <button>Login</button>
+        </div>
+      </nav>
 
-      <h1 className="title">QuickShow</h1>
-
-     <img src={sscImage} alt="Movie Poster" className="movie-poster" />
-
-      
+      {/* Hero Section */}
+      <section className="hero">
+        <h1>Welcome to QuickShow</h1>
+        <p>Book your movie tickets easily and quickly</p>
+      </section>
     </div>
   );
 }
