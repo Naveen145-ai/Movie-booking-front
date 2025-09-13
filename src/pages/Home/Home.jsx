@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -7,14 +8,16 @@ export default function Home() {
       {/* Navbar */}
       <nav className="navbar">
         <div className="nav-links">
-          <a href="#movies" className="nav-item">Movies</a>
-          <a href="#screens" className="nav-item">Screens</a>
-          <a href="#seats" className="nav-item">Seats</a>
+          <a href="/movies" className="nav-item">Movies</a>
+          <a href="/screens" className="nav-item">Screens</a>
+          <a href="/seats" className="nav-item">Seats</a>
         </div>
         <div className="login-btn">
-          <button>Login</button>
+        
         </div>
       </nav>
+
+       <div className="navbar-gradient"></div>
 
       {/* Hero Section */}
       <section className="hero">
