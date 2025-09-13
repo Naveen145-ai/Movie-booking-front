@@ -1,0 +1,132 @@
+/* Full screen gradient background */
+.movie-details-page {
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #ff0000, #000000);
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Back button */
+.back-btn {
+  align-self: flex-start;
+  margin: 20px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Movie details card */
+.movie-details {
+  display: flex;
+  flex-direction: column; /* mobile first: image on top */
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%; /* full width */
+  max-width: 500px; /* mobile card width */
+  gap: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Movie image */
+.movie-details img {
+  width: 100%;
+  max-width: 300px; /* optional for bigger screens */
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+}
+
+/* Details section */
+.details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.details-right h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.details-right p {
+  margin: 0;
+  font-size: 16px;
+  color: #ddd;
+}
+
+/* Rating */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #ffd700; /* golden star */
+}
+
+/* Booking section */
+.booking {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.booking input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking button {
+  padding: 12px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.booking button:hover {
+  background-color: #cc0000;
+}
+
+/* Responsive: on wider screens, show image left and details right */
+@media screen and (min-width: 768px) {
+  .movie-details {
+    flex-direction: row;
+    max-width: 900px;
+  }
+  .details-right {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

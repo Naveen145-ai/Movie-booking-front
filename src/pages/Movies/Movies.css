@@ -1,5 +1,5 @@
 .movies-page {
-  background: black;
+  background: linear-gradient(135deg, #ff0000, #000000);
   color: white;
   min-height: 100vh;
   width: 100vw;           /* take full width */

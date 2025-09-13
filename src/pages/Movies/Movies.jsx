@@ -1,5 +1,7 @@
 import React from "react";
 import { Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 import "./Movies.css";
 const movies = [
   {
@@ -68,10 +70,9 @@ const movies = [
   },
 ];
 
-
-
-
 export default function Movies() {
+  const navigate = useNavigate();
+
   return (
     <div className="movies-page">
       <h2 className="title">Explore Movies</h2>
@@ -85,7 +86,13 @@ export default function Movies() {
               {movie.year} • {movie.genre} • {movie.duration}
             </p>
             <div className="card-footer">
-              <button>Buy Tickets</button>
+              <button
+                onClick={() =>
+                  navigate("/movie-details", { state: { movie } })
+                }
+              >
+                Buy Tickets
+              </button>
               <div className="rating">
                 <Star size={14} className="star-icon" />
                 {movie.rating}
