@@ -1,132 +1,97 @@
-/* Full screen gradient background */
-.movie-details-page {
-  min-height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  background: linear-gradient(135deg, #ff0000, #000000);
-  color: #fff;
-  font-family: "Arial", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* Back button */
-.back-btn {
-  align-self: flex-start;
-  margin: 20px;
-  padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.back-btn:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-/* Movie details card */
+/* Full page */
 .movie-details {
+  background: #0f0f0f;
+  min-height: 100vh;
+  padding: 60px 100px;
+  color: #fff;
   display: flex;
-  flex-direction: column; /* mobile first: image on top */
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  padding: 20px;
-  width: 100%; /* full width */
-  max-width: 500px; /* mobile card width */
-  gap: 20px;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* Movie image */
-.movie-details img {
-  width: 100%;
-  max-width: 300px; /* optional for bigger screens */
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
-}
-
-/* Details section */
-.details-right {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 15px;
+}
+
+/* Container */
+.details-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  max-width: 1400px;
   width: 100%;
-  text-align: center;
 }
 
-.details-right h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
+/* Poster */
+.poster-box img {
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
-.details-right p {
-  margin: 0;
-  font-size: 16px;
-  color: #ddd;
+/* Info section */
+.info-box {
+  flex: 1;
 }
 
-/* Rating */
+.lang {
+  color: #ff004c;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .rating {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 20px;
   font-size: 16px;
-  color: #ffd700; /* golden star */
+  color: #ffcc00;
 }
 
-/* Booking section */
-.booking {
+.star {
+  color: #ffcc00;
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #ccc;
+  max-width: 700px;
+}
+
+.meta {
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #aaa;
+}
+
+/* Buttons */
+.buttons {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-  width: 100%;
+  gap: 15px;
 }
 
-.booking input {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.booking button {
-  padding: 12px;
-  background-color: #ff0000;
-  color: #fff;
+.trailer-btn,
+.ticket-btn {
+  padding: 12px 22px;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
-  width: 100%;
+  font-size: 15px;
 }
 
-.booking button:hover {
-  background-color: #cc0000;
+.trailer-btn {
+  background: #333;
+  color: #fff;
 }
 
-/* Responsive: on wider screens, show image left and details right */
-@media screen and (min-width: 768px) {
-  .movie-details {
-    flex-direction: row;
-    max-width: 900px;
-  }
-  .details-right {
-    align-items: flex-start;
-    text-align: left;
-  }
+.ticket-btn {
+  background: #ff004c;
+  color: #fff;
 }
