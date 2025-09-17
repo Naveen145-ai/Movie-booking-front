@@ -1,56 +1,120 @@
-.tickets {
-  padding: 60px 80px;
-  background: #000;
+.tickets-page {
+  background: #0f0f0f;
   min-height: 100vh;
-  color: white;
+  padding: 60px 80px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
 }
 
-.tickets h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.tickets-container {
+  display: flex;
+  gap: 80px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* Left Box - Timings */
+.timings-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px 25px;
+  border-radius: 12px;
+  min-width: 220px;
+}
+
+.timings-box h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.timings-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timings-box li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timings-box li:hover,
+.timings-box li.active {
+  background: #ff004c;
+}
+
+/* Right Box - Seats */
+.seats-box {
+  flex: 1;
   text-align: center;
 }
 
-/* Seats layout */
+.seats-box h2 {
+  margin-bottom: 20px;
+}
+
+.screen {
+  margin: 0 auto 30px;
+  padding: 8px;
+  width: 50%;
+  border-bottom: 4px solid #ff004c;
+  font-size: 14px;
+  color: #bbb;
+}
+
 .seats-grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.row {
+  display: flex;
   gap: 10px;
-  justify-content: center;
-  margin-top: 40px;
 }
 
 .seat {
-  width: 35px;
-  height: 35px;
-  background: #333;
-  border-radius: 8px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.seat:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.seat.selected {
+  background: #ff004c;
+  border-color: #ff004c;
+  color: #fff;
+}
+
+.book-btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #ff004c;
+  color: #fff;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.seat:hover {
-  background: red;
-}
-
-.seat.selected {
-  background: green;
-}
-
-.book-btn {
-  margin-top: 40px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 12px 40px;
-  border: none;
-  border-radius: 30px;
-  background: red;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
 .book-btn:hover {
-  background: darkred;
+  background: #e60042;
 }

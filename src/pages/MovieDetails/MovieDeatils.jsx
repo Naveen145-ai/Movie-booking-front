@@ -47,7 +47,13 @@ export default function MovieDetails() {
 
           <div className="buttons">
             <button className="trailer-btn">Watch Trailer</button>
-            <button className="ticket-btn">Buy Tickets</button>
+           <button
+  className="ticket-btn"
+  onClick={() => navigate("/tickets", { state: { movie } })}
+>
+  Buy Tickets
+</button>
+
           </div>
         </div>
       </div>
