@@ -1,72 +1,50 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./Tickets.css";
 
 export default function Tickets() {
+  const location = useLocation();
+  const { seats: seatLimit = 1, category = "Regular", movie = {} } = location.state || {};
+
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const timings = ["08:30 PM", "11:30 PM", "04:30 AM"];
+  const timings = ["08:30 PM", "11:30 PM", "04:30 PM"];
+  const price = category === "Box" ? 150 : 120;
+  const totalAmount = selectedSeats.length * price;
 
-  // Rows A-Z with 20 seats each
+  // Rows A-Z with 20 seats
   const rows = Array.from({ length: 26 }, (_, i) => ({
-    row: String.fromCharCode(65 + i), // A → Z
-    count: 20
+    row: String.fromCharCode(65 + i),
+    count: 20,
   }));
 
   const toggleSeat = (seat) => {
-    setSelectedSeats((prev) =>
-      prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev, seat]
-    );
+    if (selectedSeats.includes(seat)) {
+      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+    } else if (selectedSeats.length < seatLimit) {
+      setSelectedSeats([...selectedSeats, seat]);
+    }
   };
 
-  // ✅ Booking API call
-  const handleBooking = async () => {
+  const handlePayment = () => {
     if (!selectedTime) {
-      setMessage("Please select a timing!");
+      setMessage("❌ Please select a timing!");
       return;
     }
-    if (selectedSeats.length === 0) {
-      setMessage("Please select at least one seat!");
+    if (selectedSeats.length !== seatLimit) {
+      setMessage(`❌ Please select exactly ${seatLimit} seat(s)`);
       return;
     }
 
-    setLoading(true);
-    setMessage("");
-
-    try {
-      const res = await fetch("http://localhost:9000/api/bookings/postBook", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          time: selectedTime,
-          seats: selectedSeats,
-          totalPrice: selectedSeats.length * 120 // example ₹120 per seat
-        })
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setMessage("✅ Booking successful!");
-        setSelectedSeats([]);
-        setSelectedTime(null);
-      } else {
-        setMessage(`❌ Error: ${data.message || "Booking failed"}`);
-      }
-    } catch (err) {
-      console.error(err);
-      setMessage("❌ Server error. Try again.");
-    } finally {
-      setLoading(false);
-    }
+    setMessage(`✅ Payment Successful! You booked ${selectedSeats.join(", ")} for ₹${totalAmount}`);
+    setSelectedSeats([]);
+    setSelectedTime(null);
   };
 
   return (
-    <div className="tickets-page">
+    <div className="tickets-page" style={{ margin: 0, padding: 0 }}>
       <div className="tickets-layout">
         {/* Left Timings */}
         <div className="timings-section">
@@ -86,7 +64,7 @@ export default function Tickets() {
 
         {/* Right Seats */}
         <div className="seats-section">
-          <h2>Select your seat</h2>
+          <h2>{movie.title || "Movie"} - {category} Seats</h2>
           <div className="screen-line"></div>
           <div className="screen-label">SCREEN SIDE</div>
 
@@ -98,9 +76,7 @@ export default function Tickets() {
                   return (
                     <div
                       key={seat}
-                      className={`seat ${
-                        selectedSeats.includes(seat) ? "selected" : ""
-                      }`}
+                      className={`seat ${selectedSeats.includes(seat) ? "selected" : ""}`}
                       onClick={() => toggleSeat(seat)}
                     >
                       {seat}
@@ -111,12 +87,13 @@ export default function Tickets() {
             ))}
           </div>
 
-          <button
-            className="book-btn"
-            onClick={handleBooking}
-            disabled={loading}
-          >
-            {loading ? "Booking..." : "Proceed to CheckOut"}
+          <h3 style={{ marginTop: "20px" }}>
+            Selected Seats: {selectedSeats.join(", ") || "None"}
+          </h3>
+          <h3>Total Amount: ₹{totalAmount}</h3>
+
+          <button className="book-btn" onClick={handlePayment}>
+            Proceed to Pay
           </button>
 
           {message && <p style={{ marginTop: "15px" }}>{message}</p>}
