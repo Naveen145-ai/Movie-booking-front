@@ -4,6 +4,8 @@ import "./Tickets.css";
 export default function Tickets() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const timings = ["08:30 PM", "11:30 PM", "04:30 AM"];
 
@@ -17,6 +19,50 @@ export default function Tickets() {
     setSelectedSeats((prev) =>
       prev.includes(seat) ? prev.filter((s) => s !== seat) : [...prev, seat]
     );
+  };
+
+  // ✅ Booking API call
+  const handleBooking = async () => {
+    if (!selectedTime) {
+      setMessage("Please select a timing!");
+      return;
+    }
+    if (selectedSeats.length === 0) {
+      setMessage("Please select at least one seat!");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const res = await fetch("http://localhost:9000/api/bookings/postBook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          time: selectedTime,
+          seats: selectedSeats,
+          totalPrice: selectedSeats.length * 120 // example ₹120 per seat
+        })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage("✅ Booking successful!");
+        setSelectedSeats([]);
+        setSelectedTime(null);
+      } else {
+        setMessage(`❌ Error: ${data.message || "Booking failed"}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ Server error. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,11 +111,15 @@ export default function Tickets() {
             ))}
           </div>
 
-          {selectedSeats.length > 0 && (
-            <button className="book-btn">
-              Book {selectedSeats.length} Seat(s)
-            </button>
-          )}
+          <button
+            className="book-btn"
+            onClick={handleBooking}
+            disabled={loading}
+          >
+            {loading ? "Booking..." : "Proceed to CheckOut"}
+          </button>
+
+          {message && <p style={{ marginTop: "15px" }}>{message}</p>}
         </div>
       </div>
     </div>
