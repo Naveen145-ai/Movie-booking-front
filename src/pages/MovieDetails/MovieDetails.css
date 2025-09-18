@@ -95,3 +95,149 @@
   background: #ff004c;
   color: #fff;
 }
+
+
+/* Modal White Box */
+.seat-count-box {
+  background: #fff;
+  color: #000;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 15px auto;
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* White box modal */
+.seat-modal {
+  background: #fff;
+  color: #000;
+  border-radius: 16px 16px 0 0;
+  width: 400px;
+  max-width: 90%;
+  padding: 30px 20px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Title */
+.modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Scooter box (icon placeholder) */
+.scooter-box {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+/* Seat number row */
+.seat-number-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.seat-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: #f9f9f9;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.seat-number:hover {
+  background: #eee;
+}
+
+.seat-number.active {
+  background: #ff004c;
+  color: #fff;
+  border-color: #ff004c;
+}
+
+/* Confirm button */
+.confirm-btn {
+  background: #ff004c;
+  color: #fff;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+}
+.confirm-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+
+
+/* Category row */
+.category-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.category-btn {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.category-btn:hover {
+  background: #eee;
+}
+
+.category-btn.active {
+  background: #ff004c;
+  color: #fff;
+  border-color: #ff004c;
+}
