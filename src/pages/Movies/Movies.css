@@ -1,11 +1,20 @@
 .movies-page {
-  background: black;
-  color: white;
+  --bg: #0f0f12;
+  --panel: #1a1a1f;
+  --panel-2: #22222a;
+  --text: #e6e6ea;
+  --muted: #a3a3ad;
+  --accent: #ff4d6d;
+  --border: #2b2b34;
+  background: radial-gradient(1200px 600px at -10% -10%, #1a1a1f, transparent),
+    radial-gradient(1000px 500px at 110% -10%, #201922, transparent),
+    var(--bg);
+  color: var(--text);
   min-height: 100vh;
-  width: 100vw;           /* take full width */
-  margin: 0;              /* no margins */
-  padding: 100px 0 40px;  /* only top + bottom padding */
-  overflow-x: hidden;     /* prevent side scrolling */
+  width: 100vw;
+  margin: 0;
+  padding: 100px 0 40px;
+  overflow-x: hidden;
 }
 
 .title {
@@ -25,7 +34,8 @@
 }
 
 .movie-card {
-  background: #1a1a1a;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 15px;
   text-align: left;
@@ -57,26 +67,27 @@
 }
 
 button {
-  background: #ff4081;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #e73370;
+  border-color: var(--accent);
 }
 
 .rating {
-  color: #ff4081;
+  color: var(--accent);
   display: flex;
   align-items: center;
   font-size: 12px;
 }
 
 .star-icon {
-  fill: #ff4081;
+  fill: var(--accent);
   margin-right: 4px;
 }

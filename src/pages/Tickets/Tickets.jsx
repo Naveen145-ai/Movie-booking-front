@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
+import api from "../../services/api";
 import "./Tickets.css";
 
 export default function Tickets() {
   const location = useLocation();
   const { seats: seatLimit = 1, category = "Regular", movie = {} } = location.state || {};
-  const timings = ["08:30 PM", "11:30 PM", "04:30 PM"];
+  const timings = Array.isArray(movie.times) && movie.times.length > 0 ? movie.times : ["08:30 PM", "11:30 PM", "04:30 PM"];
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [message, setMessage] = useState("");
@@ -34,7 +35,7 @@ export default function Tickets() {
     });
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     if (!selectedTime) {
       setMessage("Please select a timing.");
       return;
@@ -43,7 +44,23 @@ export default function Tickets() {
       setMessage(`Please select exactly ${seatLimit} seat(s).`);
       return;
     }
-    setMessage(`Booked ${selectedSeats.join(", ")} for ${selectedTime}. Total ₹${totalAmount}`);
+    try {
+      const email = localStorage.getItem('qs_email');
+      if (!email) {
+        setMessage('Please login first.');
+        return;
+      }
+      await api.createBooking({
+        userEmail: email,
+        movieTitle: movie.title,
+        showTime: selectedTime,
+        seats: selectedSeats,
+        totalPrice: totalAmount,
+      });
+      setMessage(`Booked ${selectedSeats.join(", ")} for ${selectedTime}. Total ₹${totalAmount}`);
+    } catch (e) {
+      setMessage(e.message || 'Booking failed');
+    }
   };
 
   return (
