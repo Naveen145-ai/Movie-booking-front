@@ -10,8 +10,6 @@ export default function Home() {
       <nav className="navbar">
         <div className="nav-links">
           <Link to="/movies" className="nav-item">Movies</Link>
-          <Link to="/screens" className="nav-item">Screens</Link>
-          <Link to="/seats" className="nav-item">Seats</Link>
         </div>
         <div className="login-btn">
           {email ? (
@@ -32,3 +30,4 @@ export default function Home() {
     </div>
   );
 }
+
