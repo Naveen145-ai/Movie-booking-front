@@ -1,9 +1,14 @@
 :root { --bg:#0f0f12; --panel:#1a1a1f; --panel-2:#22222a; --text:#e6e6ea; --muted:#a3a3ad; --accent:#ff4d6d; --border:#2b2b34; }
-.login-page { min-height:100vh; display:grid; place-items:center; background: radial-gradient(1200px 600px at -10% -10%, #1a1a1f, transparent), radial-gradient(1000px 500px at 110% -10%, #201922, transparent), var(--bg); color:var(--text); padding:24px; }
-.login-card { width:100%; max-width:360px; background: linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid var(--border); border-radius:14px; padding:20px; display:grid; gap:10px; }
+.login-page { min-height:100vh; display:grid; place-items:start center; background: radial-gradient(1200px 600px at -10% -10%, #1a1a1f, transparent), radial-gradient(1000px 500px at 110% -10%, #201922, transparent), var(--bg); color:var(--text); padding:100px 40px 40px; }
+.login-card { width:100%; max-width:720px; background: linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid var(--border); border-radius:14px; padding:28px; display:grid; gap:14px; }
 .login-card h2 { margin:0 0 6px; }
-.login-card input { height:42px; border-radius:10px; border:1px solid var(--border); background:#121216; color:var(--text); padding:0 12px; outline:none; }
-.login-card button { height:42px; border-radius:10px; border:1px solid var(--border); background: linear-gradient(180deg, var(--panel), var(--panel-2)); color:var(--text); font-weight:700; }
+.login-card input { height:46px; border-radius:10px; border:1px solid var(--border); background:#121216; color:var(--text); padding:0 12px; outline:none; font-size:16px; }
+.login-card button { height:46px; border-radius:10px; border:1px solid var(--border); background: linear-gradient(180deg, var(--panel), var(--panel-2)); color:var(--text); font-weight:700; font-size:16px; }
 .login-card button:hover { border-color: var(--accent); }
 .login-card .msg { color: salmon; font-size: 0.9rem; }
 .muted { color: var(--muted); font-size: 0.85rem; }
+
+/* Make it feel roomy on large screens */
+@media (min-width: 1280px) {
+  .login-card { max-width: 860px; padding: 36px; }
+}
