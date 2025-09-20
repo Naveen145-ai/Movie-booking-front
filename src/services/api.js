@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:9000';
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
@@ -15,6 +15,7 @@ export default {
   listShows: () => request('/api/shows'),
   // auth
   login: (email, name) => request('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, name }) }),
+  register: (email, name) => request('/api/auth/register', { method: 'POST', body: JSON.stringify({ email, name }) }),
   // bookings
   createBooking: (payload) => request('/api/bookings/postBook', { method: 'POST', body: JSON.stringify(payload) }),
   listBookings: () => request('/api/bookings/getBook'),
