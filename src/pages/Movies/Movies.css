@@ -1,14 +1,12 @@
 .movies-page {
-  --bg: #0f0f12;
+  /* Use global site background; keep page transparent */
   --panel: #1a1a1f;
   --panel-2: #22222a;
   --text: #e6e6ea;
   --muted: #a3a3ad;
   --accent: #ff4d6d;
   --border: #2b2b34;
-  background: radial-gradient(1200px 600px at -10% -10%, #1a1a1f, transparent),
-    radial-gradient(1000px 500px at 110% -10%, #201922, transparent),
-    var(--bg);
+  background: transparent;
   color: var(--text);
   min-height: 100vh;
   width: 100vw;

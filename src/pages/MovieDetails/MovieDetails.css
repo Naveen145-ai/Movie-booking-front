@@ -1,6 +1,7 @@
 /* Full page */
 .movie-details {
-  background: #0f0f0f;
+  /* Use global background; no local dark fill */
+  background: transparent;
   min-height: 100vh;
   padding: 60px 100px;
   color: #fff;

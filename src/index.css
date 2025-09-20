@@ -5,7 +5,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --red: #ff004c;
+  --bg: #0e0e0e;
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,6 +30,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* Tickets red gradient background applied globally */
+  background: radial-gradient(900px 500px at 20% 25%, rgba(255,0,76,0.15), transparent 60%),
+              radial-gradient(700px 400px at 75% 70%, rgba(255,0,76,0.12), transparent 60%),
+              var(--bg);
 }
 
 h1 {
