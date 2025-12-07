@@ -9,6 +9,7 @@ function Header() {
       <nav className="nav">
         <Link to="/" className="nav-link">Home</Link>
         <Link to="/movies" className="nav-link">Movies</Link>
+        <Link to="/360-videos" className="nav-link">360° Videos</Link>
       </nav>
       <div style={{ textAlign: 'right' }}>
         {email ? (

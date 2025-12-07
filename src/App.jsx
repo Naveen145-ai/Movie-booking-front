@@ -7,6 +7,7 @@ import Tickets from './pages/Tickets/Tickets';
 import MovieDetails from './pages/MovieDetails/MovieDeatils';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import Videos360 from './pages/Videos360/Videos360';
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/movie-details' element={<MovieDetails/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/360-videos' element={<Videos360/>} />
       </Routes>
      </Router>
     </>
