@@ -16,8 +16,8 @@ export default function Home() {
         <nav className="pill-nav">
           <Link to="/" className="pill-link active">Home</Link>
           <Link to="/movies" className="pill-link">Movies</Link>
-          <span className="pill-link">Theaters</span>
-          <span className="pill-link">Releases</span>
+          <Link to="/360-videos"className="pill-link">Screens</Link>
+         
           <span className="pill-link">Favorites</span>
         </nav>
 

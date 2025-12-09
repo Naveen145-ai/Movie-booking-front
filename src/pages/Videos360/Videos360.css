@@ -22,7 +22,7 @@
 
 .videos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -43,7 +43,8 @@
 
 .video-thumbnail {
   position: relative;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  width: 100%;
+  height: 50vh;
   overflow: hidden;
 }
 
@@ -191,8 +192,12 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .videos-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .video-thumbnail {
+    height: 40vh;
   }
   
   .videos-360-container {
@@ -207,5 +212,9 @@
 @media (max-width: 480px) {
   .videos-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .video-thumbnail {
+    height: 30vh;
   }
 }

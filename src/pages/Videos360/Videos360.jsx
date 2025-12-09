@@ -1,53 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 import './Videos360.css';
 
 const Videos360 = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
   const navigate = useNavigate();
 
-  // In a real app, you would fetch this from your backend
+  // Fetch videos from backend API
   useEffect(() => {
-    // Simulating API call
-    const fetchVideos = async () => {
-      try {
-        // Replace this with actual API call to fetch 360° videos
-        // const response = await fetch('/api/360-videos');
-        // const data = await response.json();
-        
-        // For demo purposes, using mock data
-        const mockVideos = [
-          {
-            id: 1,
-            name: 'Mountain View 360°',
-            thumbnail: 'https://via.placeholder.com/300x169?text=Mountain+View',
-            videoUrl: 'https://example.com/360-mountain.mp4',
-            duration: '2:30',
-            views: 1245
-          },
-          {
-            id: 2,
-            name: 'City Tour 360°',
-            thumbnail: 'https://via.placeholder.com/300x169?text=City+Tour',
-            videoUrl: 'https://example.com/360-city.mp4',
-            duration: '3:15',
-            views: 876
-          },
-          // Add more mock videos as needed
-        ];
-        
-        setVideos(mockVideos);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching 360° videos:', error);
-        setLoading(false);
-      }
-    };
-
     fetchVideos();
   }, []);
+
+  const fetchVideos = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const response = await api.getAllVideos360();
+      if (response.success) {
+        setVideos(response.data || []);
+      } else {
+        setError('Failed to load videos');
+      }
+    } catch (error) {
+      console.error('Error fetching 360° videos:', error);
+      setError('Failed to load videos. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleVideoSelect = (video) => {
     setSelectedVideo(video);
@@ -71,27 +55,55 @@ const Videos360 = () => {
         Immerse yourself in our collection of 360° videos. Click on any video to start the experience.
       </p>
       
-      <div className="videos-grid">
-        {videos.map((video) => (
-          <div 
-            key={video.id} 
-            className="video-card"
-            onClick={() => handleVideoSelect(video)}
-          >
-            <div className="video-thumbnail">
-              <img src={video.thumbnail} alt={video.name} />
-              <div className="video-duration">{video.duration}</div>
-              <div className="play-icon">▶</div>
-            </div>
-            <div className="video-info">
-              <h3>{video.name}</h3>
-              <div className="video-stats">
-                <span>👁️ {video.views} views</span>
+      {error && (
+        <div style={{ 
+          padding: '1rem', 
+          marginBottom: '2rem', 
+          backgroundColor: '#fee', 
+          color: '#c33', 
+          borderRadius: '4px',
+          textAlign: 'center'
+        }}>
+          {error}
+        </div>
+      )}
+      
+      {videos.length === 0 && !loading ? (
+        <div style={{ textAlign: 'center', padding: '3rem' }}>
+          <p>No 360° videos available yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div className="videos-grid">
+          {videos.map((video) => (
+            <div 
+              key={video._id || video.id} 
+              className="video-card"
+              onClick={() => handleVideoSelect(video)}
+            >
+              <div className="video-thumbnail">
+                <video 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  muted
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => {
+                    e.target.pause();
+                    e.target.currentTime = 0;
+                  }}
+                >
+                  <source src={video.videoUrl} type="video/mp4" />
+                </video>
+                <div className="play-icon">▶</div>
+              </div>
+              <div className="video-info">
+                <h3>{video.name}</h3>
+                <div className="video-stats">
+                  <span>📅 {new Date(video.uploadedAt).toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {selectedVideo && (
         <div className="video-modal">

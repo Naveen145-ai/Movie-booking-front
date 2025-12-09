@@ -19,4 +19,6 @@ export default {
   // bookings
   createBooking: (payload) => request('/api/bookings/postBook', { method: 'POST', body: JSON.stringify(payload) }),
   listBookings: () => request('/api/bookings/getBook'),
+  // 360 Videos
+  getAllVideos360: () => request('/api/videos360/all'),
 };
